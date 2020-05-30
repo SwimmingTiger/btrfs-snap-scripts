@@ -7,3 +7,4 @@ if [ "$1" = "" ]; then
 fi
 
 btrfs sub del "/parent/snapshots/$1"
+btrfs sub del "/parent/backup/$1"
