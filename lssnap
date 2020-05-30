@@ -1,0 +1,11 @@
+#!/bin/sh
+if [ "$1" = "-a" ]; then
+	btrfs sub list /
+else
+	btrfs sub list / | grep -v 'path backup/'
+fi
+
+echo
+echo 'Default:'
+btrfs sub get-default /
+

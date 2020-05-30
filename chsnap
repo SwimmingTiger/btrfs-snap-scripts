@@ -1,0 +1,20 @@
+#!/bin/sh
+
+if [ "$1" = "" ]; then
+	echo "Usage: $0 <snap-name>"
+	echo "Example: $0 0000-installed"
+	exit
+fi
+
+if [ -d "/parent/rootfs" ]; then
+	echo "/parent/rootfs exists, please rename it first!"
+	exit
+fi
+
+btrfs sub snap "/parent/$1" "/parent/rootfs"
+btrfs sub set-default $(btrfs sub list / | grep -E ' path rootfs$' | awk '{print $2}') /
+
+echo
+echo 'Default:'
+btrfs sub get-default /
+

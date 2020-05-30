@@ -1,0 +1,11 @@
+#!/bin/sh
+
+if [ "$1" = "" ] || [ "$2" = "" ]; then
+	echo "Usage: $0 <snap-path> <snap-name>"
+	echo "Example: $0 / 0000-installed"
+	exit
+fi
+
+btrfs sub snap -r "$1" "/parent/backup/$2"
+btrfs sub snap -r "$1" "/parent/snapshots/$2"
+

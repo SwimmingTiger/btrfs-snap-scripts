@@ -1,0 +1,9 @@
+#!/bin/sh
+
+if [ "$1" = "" ]; then
+	echo "Usage: $0 <snap-name>"
+	echo "Example: $0 0000-installed"
+	exit
+fi
+
+btrfs sub del "/parent/snapshots/$1"
