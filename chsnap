@@ -6,13 +6,21 @@ if [ "$1" = "" ]; then
 	exit
 fi
 
+if [ "$1" = "rootfs" ]; then
+	btrfs sub set-default /parent/rootfs
+	echo
+	echo 'Default:'
+	btrfs sub get-default /
+	exit
+fi
+
 if [ -d "/parent/rootfs" ]; then
 	echo "/parent/rootfs exists, please rename it first!"
 	exit
 fi
 
 btrfs sub snap "/parent/$1" "/parent/rootfs"
-btrfs sub set-default $(btrfs sub list / | grep -E ' path rootfs$' | awk '{print $2}') /
+btrfs sub set-default /parent/rootfs
 
 echo
 echo 'Default:'
