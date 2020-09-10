@@ -1,0 +1,11 @@
+#!/bin/sh
+
+if [ "$1" = "" ] || [ "$2" = "" ]; then
+	echo "Usage: $0 <snap-path> <snap-name>"
+	echo "Example: $0 /data/games 0001-games-tiger"
+	exit
+fi
+
+btrfs sub snap -r "$1" "/data/backup/$2"
+btrfs sub snap -r "$1" "/data/snapshots/$2"
+

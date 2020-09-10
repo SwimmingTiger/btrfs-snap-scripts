@@ -1,0 +1,10 @@
+#!/bin/sh
+
+if [ "$1" = "" ]; then
+	echo "Usage: $0 <snap-name>"
+	echo "Example: $0 0001-games-ok"
+	exit
+fi
+
+btrfs sub del "/data/snapshots/$1"
+btrfs sub del "/data/backup/$1"
