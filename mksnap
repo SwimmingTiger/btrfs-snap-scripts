@@ -7,5 +7,5 @@ if [ "$1" = "" ] || [ "$2" = "" ]; then
 fi
 
 btrfs sub snap -r "$1" "/parent/backup/$2"
-btrfs sub snap -r "$1" "/parent/snapshots/$2"
+btrfs sub snap -r "/parent/backup/$2" "/parent/snapshots/$2"
 
